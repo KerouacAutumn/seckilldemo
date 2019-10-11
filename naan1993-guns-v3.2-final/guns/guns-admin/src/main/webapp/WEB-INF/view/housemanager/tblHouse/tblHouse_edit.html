@@ -7,14 +7,14 @@
 
             <div class="row">
                 <div class="col-sm-6 b-r">
-                            <#input id="id" name="" value="${item.id}" underline="true"/>
-                            <#input id="houseUser" name="" value="${item.houseUser}" underline="true"/>
-                            <#input id="houseAddress" name="" value="${item.houseAddress}" />
+
+                            <#input id="houseUser" name="业主名称" value="${item.houseUser}" underline="true"/>
+                            <#input id="houseAddress" name="房屋地址" value="${item.houseAddress}" />
                 </div>
 
                 <div class="col-sm-6">
-                            <#input id="houseDate" name="" value="${item.houseDate}" underline="true"/>
-                            <#input id="houseDesc" name="" value="${item.houseDesc}" />
+                            <#input id="houseDate" name="交付时间" value="${item.houseDate}" underline="true" type="date" clickFun="laydate({istime: false, format: 'YYYY-MM-DD'})"/>
+                            <#input id="houseDesc" name="房屋描述" value="${item.houseDesc}" />
                 </div>
             </div>
 
