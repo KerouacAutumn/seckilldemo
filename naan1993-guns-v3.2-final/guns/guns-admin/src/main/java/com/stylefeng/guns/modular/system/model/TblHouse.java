@@ -8,6 +8,8 @@ import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableName;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.io.Serializable;
 
 /**
@@ -62,7 +64,8 @@ public class TblHouse extends Model<TblHouse> {
     public Date getHouseDate() {
         return houseDate;
     }
-
+    //新增
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     public void setHouseDate(Date houseDate) {
         this.houseDate = houseDate;
     }

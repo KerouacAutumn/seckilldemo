@@ -93,5 +93,10 @@ TblHouseInfoDlg.editSubmit = function() {
 }
 
 $(function() {
-
+    laydate.render(
+        {
+            elem:'#houseDate',
+            type:'datetime'
+        }
+    )
 });

@@ -1,6 +1,9 @@
 package com.stylefeng.guns.modular.housemanager.controller;
 
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.stylefeng.guns.core.base.controller.BaseController;
+import com.stylefeng.guns.core.util.ToolUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -60,7 +63,13 @@ public class TblHouseController extends BaseController {
     @RequestMapping(value = "/list")
     @ResponseBody
     public Object list(String condition) {
-        return tblHouseService.selectList(null);
+        if(ToolUtil.isEmpty(condition)){
+            return tblHouseService.selectList(null);
+        } else {
+            EntityWrapper<TblHouse> entityWrapper = new EntityWrapper<>();
+            Wrapper<TblHouse> wrapper = entityWrapper.like("house_user",condition);
+            return tblHouseService.selectList(wrapper);
+        }
     }
 
     /**
