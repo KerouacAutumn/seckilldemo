@@ -1,0 +1,10 @@
+server:
+  port: 8088
+spring:
+  profiles:
+    active: native
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: E:/IdeaProject/sccdemo/sccdemoserver/src/main/resources
