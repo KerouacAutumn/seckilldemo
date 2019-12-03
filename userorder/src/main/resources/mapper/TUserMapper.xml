@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.waqwb.userorder.dao.TUserMapper">
+    <resultMap id="BaseResultMap" type="cn.waqwb.userorder.pojo.TUser">
+        <id column="user_id" property="userId" jdbcType="VARCHAR"/>
+        <result column="lev" property="lev" jdbcType="INTEGER"/>
+        <result column="points" property="points" jdbcType="INTEGER"/>
+        <result column="user_password" property="userPassword" jdbcType="VARCHAR"/>
+        <result column="user_name" property="userName" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+    user_id, lev, points, user_password, user_name
+  </sql>
+    <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.waqwb.userorder.pojo.TUserExample">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        from t_user
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from t_user
+        where user_id = #{userId,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from t_user
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </delete>
+    <delete id="deleteByExample" parameterType="cn.waqwb.userorder.pojo.TUserExample">
+        delete from t_user
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+    <insert id="insert" parameterType="cn.waqwb.userorder.pojo.TUser">
+    insert into t_user (user_id, lev, points, 
+      user_password, user_name)
+    values (#{userId,jdbcType=VARCHAR}, #{lev,jdbcType=INTEGER}, #{points,jdbcType=INTEGER}, 
+      #{userPassword,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR})
+  </insert>
+    <insert id="insertSelective" parameterType="cn.waqwb.userorder.pojo.TUser">
+        insert into t_user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="lev != null">
+                lev,
+            </if>
+            <if test="points != null">
+                points,
+            </if>
+            <if test="userPassword != null">
+                user_password,
+            </if>
+            <if test="userName != null">
+                user_name,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userId != null">
+                #{userId,jdbcType=VARCHAR},
+            </if>
+            <if test="lev != null">
+                #{lev,jdbcType=INTEGER},
+            </if>
+            <if test="points != null">
+                #{points,jdbcType=INTEGER},
+            </if>
+            <if test="userPassword != null">
+                #{userPassword,jdbcType=VARCHAR},
+            </if>
+            <if test="userName != null">
+                #{userName,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="cn.waqwb.userorder.pojo.TUserExample" resultType="java.lang.Integer">
+        select count(*) from t_user
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update t_user
+        <set>
+            <if test="record.userId != null">
+                user_id = #{record.userId,jdbcType=VARCHAR},
+            </if>
+            <if test="record.lev != null">
+                lev = #{record.lev,jdbcType=INTEGER},
+            </if>
+            <if test="record.points != null">
+                points = #{record.points,jdbcType=INTEGER},
+            </if>
+            <if test="record.userPassword != null">
+                user_password = #{record.userPassword,jdbcType=VARCHAR},
+            </if>
+            <if test="record.userName != null">
+                user_name = #{record.userName,jdbcType=VARCHAR},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update t_user
+        set user_id = #{record.userId,jdbcType=VARCHAR},
+        lev = #{record.lev,jdbcType=INTEGER},
+        points = #{record.points,jdbcType=INTEGER},
+        user_password = #{record.userPassword,jdbcType=VARCHAR},
+        user_name = #{record.userName,jdbcType=VARCHAR}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="cn.waqwb.userorder.pojo.TUser">
+        update t_user
+        <set>
+            <if test="lev != null">
+                lev = #{lev,jdbcType=INTEGER},
+            </if>
+            <if test="points != null">
+                points = #{points,jdbcType=INTEGER},
+            </if>
+            <if test="userPassword != null">
+                user_password = #{userPassword,jdbcType=VARCHAR},
+            </if>
+            <if test="userName != null">
+                user_name = #{userName,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where user_id = #{userId,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="cn.waqwb.userorder.pojo.TUser">
+    update t_user
+    set lev = #{lev,jdbcType=INTEGER},
+      points = #{points,jdbcType=INTEGER},
+      user_password = #{userPassword,jdbcType=VARCHAR},
+      user_name = #{userName,jdbcType=VARCHAR}
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </update>
+    <select id="queryByTUserId" resultType="cn.waqwb.userorder.pojo.TUser">
+    select
+    *
+    from t_user
+    where user_id = #{id}
+  </select>
+</mapper>

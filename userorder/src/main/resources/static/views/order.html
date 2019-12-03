@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div style="padding:10px 10px 10px 10px">
+    <form id="itemAddForm" class="itemForm" method="post">
+        <tr>
+            <td align="center" valign="middle" bgcolor="#FFFFFF">订单id:a</td>
+            <td align="center" valign="middle" bgcolor="#FFFFFF">订单金额:5000元</td>
+        </tr>
+        <a href="javascript:void(0)" class="easyui-linkbutton" onclick="submita()">支付订单</a>
+        <br></br>
+        <tr>
+            <td align="center" valign="middle" bgcolor="#FFFFFF">订单id:b</td>
+            <td align="center" valign="middle" bgcolor="#FFFFFF">订单金额:6000元</td>
+
+        </tr>
+
+        <a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitb()">支付订单</a>
+        <br></br>
+        <tr>
+            <td align="center" valign="middle" bgcolor="#FFFFFF">订单id:c</td>
+            <td align="center" valign="middle" bgcolor="#FFFFFF">订单金额:9000元</td>
+        </tr>
+        <a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitc()">支付订单</a>
+
+
+        <script type="text/javascript">
+            function submita(){
+                $.get("/order/pay.action?orderId=a",function(data){
+                    if(data==1){
+                        alert("支付成功，已经积分成功");
+                    }else{
+                        alert("支付失败，未能积分成功");
+                    }
+                });
+            }
+            function submitb(){
+                $.get("/order/pay.action?orderId=b",function(data){
+                    if(data==1){
+                        alert("支付成功，已经积分成功");
+                    }else{
+                        alert("支付失败，未能积分成功");
+                    }
+                });
+            }
+            function submitc(){
+                $.get("/order/pay.action?orderId=c",function(data){
+                    if(data==1){
+                        alert("支付成功，已经积分成功");
+                    }else{
+                        alert("支付失败，未能积分成功");
+                    }
+                });
+            }
+        </script>
+</body>
+</html>

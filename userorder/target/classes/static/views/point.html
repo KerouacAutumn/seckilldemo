@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript">
+       window.onload=function()
+
+
+    </script>
+</head>
+<body>
+<div id="div01" >您的用户积分为：</div>
+<div id="div02" >存放请求来的数据</div>
+<script>
+
+    $(function()
+    {
+        $.ajax({
+            type: "GET",
+            url: '/user/query/point.action?userId=1',
+            dataType:"json",
+            success: function(data) {
+                // 将请求的数据放输出到div里面
+                $('#div02').html(data.points+"分");
+            }
+        });
+    });
+</script>
+</body>
+</html>

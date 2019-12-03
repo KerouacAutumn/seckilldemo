@@ -1,0 +1,12 @@
+spring:
+   datasource:
+     driver-class-name: com.mysql.jdbc.Driver
+#     hikari:
+#       jdbc-url: jdbc:mysql://localhost:3306/sdb"
+     username: waqwb
+     password: qiu55555
+     type: com.alibaba.druid.pool.DruidDataSource
+     url: jdbc:mysql://localhost:3306/sdb
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+
